@@ -1,7 +1,9 @@
 <script lang="ts">
+	import Navbar from "./components/navbar.svelte"
 </script>
 
 <main>
+	<Navbar />
 </main>
 
 <style lang="less" scoped>
