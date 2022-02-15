@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { currentTab } from "../store"
+    import { currentTab, isNavBarMaximize } from "../store"
 
     let Navbar:HTMLElement
 
@@ -12,11 +12,13 @@
                 Navbar.style.setProperty("--sm-screen-width", "60px")
                 Navbar.style.setProperty("--md-screen-width", "60px")
                 Navbar.style.setProperty("--lg-screen-width", "60px")
+                $isNavBarMaximize = false
             } else {
                 Navbar.style.setProperty("--not-xs-span-display", "block")
                 Navbar.style.setProperty("--sm-screen-width", "200px")
                 Navbar.style.setProperty("--md-screen-width", "240px")
                 Navbar.style.setProperty("--lg-screen-width", "280px")
+                $isNavBarMaximize = true
             }
         }
     }
