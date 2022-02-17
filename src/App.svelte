@@ -1,9 +1,14 @@
 <script lang="ts">
 	import Navbar from "./components/navbar.svelte"
+	import { Settings } from "./components/tabs"
+	import { currentTab } from "./store"
 </script>
 
 <main>
 	<Navbar />
+	{#if $currentTab == "settings"}
+		<Settings />
+	{/if}
 </main>
 
 <style lang="less" scoped>
