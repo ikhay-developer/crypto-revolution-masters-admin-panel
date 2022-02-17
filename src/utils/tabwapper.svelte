@@ -6,7 +6,7 @@
 
     let dispatcher = createEventDispatcher()
 
-    const scaleMain = () => {
+    $:{ 
         if (main != undefined) {
             let screenType = getComputedStyle(main).getPropertyValue("--screen-type")
             if (screenType != "xs") {
@@ -26,9 +26,45 @@
         }
     }
 
-    $:{ scaleMain() }
+    onMount(() => {
+        if (main != undefined) {
+            let screenType = getComputedStyle(main).getPropertyValue("--screen-type")
+            if (screenType != "xs") {
+                if ($isNavBarMaximize) {
+                    if (screenType == "sm")
+                        main.style.setProperty("--not-xs-screen-width", "200px")
+                    else if (screenType == "md")
+                        main.style.setProperty("--not-xs-screen-width", "240px")
+                    else if (screenType == "lg")
+                        main.style.setProperty("--not-xs-screen-width", "280px")
+                    else  if (screenType == "xl")
+                        main.style.setProperty("--not-xs-screen-width", "280px")
+                } else if (!$isNavBarMaximize) {
+                    main.style.setProperty("--not-xs-screen-width", "60px")
+                }
+            }
+        }
+    })
 
-    onMount(scaleMain)
+    window.onresize = () => {
+        if (main != undefined) {
+            let screenType = getComputedStyle(main).getPropertyValue("--screen-type")
+            if (screenType != "xs") {
+                if ($isNavBarMaximize) {
+                    if (screenType == "sm")
+                        main.style.setProperty("--not-xs-screen-width", "200px")
+                    else if (screenType == "md")
+                        main.style.setProperty("--not-xs-screen-width", "240px")
+                    else if (screenType == "lg")
+                        main.style.setProperty("--not-xs-screen-width", "280px")
+                    else  if (screenType == "xl")
+                        main.style.setProperty("--not-xs-screen-width", "280px")
+                } else if (!$isNavBarMaximize) {
+                    main.style.setProperty("--not-xs-screen-width", "60px")
+                }
+            }
+        }
+    }
 
     </script>
     
