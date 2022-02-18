@@ -17,6 +17,10 @@
     let searchValue:string = String()
 
     $:imgSrc = searchValue != String() ? "./img/x.svg":"./img/search.svg"
+
+    $: {
+        dispatcher("input", searchValue)
+    }
 </script>
 
 <div class="search-bar-container" bind:this={searchBar}>
@@ -30,7 +34,7 @@
                 }
             }}
         >
-        <input on:input={_ => dispatcher("input", searchValue)} type="text" bind:value={searchValue} {placeholder}>
+        <input type="text" bind:value={searchValue} {placeholder}>
     </div>
 </div>
 
