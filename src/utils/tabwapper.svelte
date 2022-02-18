@@ -4,8 +4,6 @@
     
     let main:HTMLElement
 
-    let dispatcher = createEventDispatcher()
-
     $:{ 
         if (main != undefined) {
             let screenType = getComputedStyle(main).getPropertyValue("--screen-type")
@@ -67,8 +65,7 @@
     }
 
     </script>
-    
-    <main on:scroll={e => dispatcher("scroll", e)} bind:this={main}>
+    <main bind:this={main}>
         <slot></slot>
     </main>
     
