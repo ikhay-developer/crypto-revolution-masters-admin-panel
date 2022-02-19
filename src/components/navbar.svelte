@@ -5,19 +5,27 @@
 
     $:NavbarToggle = false
 
-    $:{
+    $: {
         if (Navbar != undefined) {
-            if (NavbarToggle) {
+            if (!$isNavBarMaximize) {
                 Navbar.style.setProperty("--not-xs-span-display", "none")
                 Navbar.style.setProperty("--sm-screen-width", "60px")
                 Navbar.style.setProperty("--md-screen-width", "60px")
                 Navbar.style.setProperty("--lg-screen-width", "60px")
-                $isNavBarMaximize = false
-            } else {
+            } else if ($isNavBarMaximize) {
                 Navbar.style.setProperty("--not-xs-span-display", "block")
                 Navbar.style.setProperty("--sm-screen-width", "200px")
                 Navbar.style.setProperty("--md-screen-width", "240px")
                 Navbar.style.setProperty("--lg-screen-width", "280px")
+            }
+        }
+    }
+
+    $:{
+        if (Navbar != undefined) {
+            if (NavbarToggle) {                
+                $isNavBarMaximize = false
+            } else {
                 $isNavBarMaximize = true
             }
         }
@@ -27,7 +35,7 @@
 
 <nav bind:this={Navbar}>
     <button
-        on:click={_ => NavbarToggle = !NavbarToggle}
+        on:click={_ => NavbarToggle = $currentTab == "favourite" ? true : !NavbarToggle }
     >
         <img src="./img/justify.svg" alt="jus">
     </button>
