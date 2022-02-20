@@ -1,18 +1,23 @@
 <script lang="ts">
 	import Navbar from "./components/navbar.svelte"
+	import Loginpage from "./components/loginpage.svelte"
 	import { 
 		Settings, 
 		Users 
 	} from "./components/tabs"
-	import { currentTab } from "./store"
+	import { currentTab, isLogin } from "./store"
 </script>
 
 <main>
-	<Navbar />
-	{#if $currentTab == "settings"}
-		<Settings />
-	{:else if $currentTab == "users"}
-		<Users />
+	{#if $isLogin}
+		<Navbar />
+		{#if $currentTab == "settings"}
+			<Settings />
+		{:else if $currentTab == "users"}
+			<Users />
+		{/if}
+	{:else}
+		<Loginpage />
 	{/if}
 </main>
 
