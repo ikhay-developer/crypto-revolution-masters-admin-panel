@@ -13,6 +13,10 @@
         email: string
     }
 
+    let coinLength = 100
+
+    var lastScrollTop = 0
+
     let userDataList:Array<UserData> = []
 
     let placeholder:string = "Search"
@@ -53,7 +57,7 @@
                 hasResponseError = false
                 isLoading = false
                 userDataList = data
-                userDataListReactive = userDataList
+                userDataListReactive = [...(Array.from(userDataList).splice(0, coinLength))]
             })
             .catch(_ => {
                 isLoading = false
@@ -69,7 +73,25 @@
 
     $: { loadData() }
 
-    onMount(loadData)
+    onMount(()=> {
+        loadData()
+        setInterval(_ => {
+            if (window.navigator.onLine && $currentTab == "users" && hasLoadedData) {
+                fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/users", { 
+                    method: "GET",
+                    headers: {
+                        "Accept": "*/*",
+                        "Content-Type": "application/json"
+                    }
+                }).then(function(response) {
+                    return response.json()
+                }).then(function(data) {
+                    userDataList = data
+                    userDataListReactive = [...(Array.from(userDataList).splice(0, coinLength))]
+                })
+            }
+        }, 150000000)
+    })
 
     const loadDataWhenOnline = () => {
         if (!hasLoadedData && window.navigator.onLine && hasResponseError)
@@ -79,13 +101,26 @@
         requestAnimationFrame(loadDataWhenOnline)
     }
 
-    $:userDataListReactive = (userDataList.filter(value => value.email.toLowerCase().search(searchValue.toLowerCase()) >= 0 || value.username.toLowerCase().search(searchValue.toLowerCase()) >= 0))
+    const whenScrolled = (ev:Event) => {
+        var st = (ev.target as HTMLElement).scrollTop
+        if (st > lastScrollTop){
+            coinLength += 0.5
+            coinLength = Math.round(coinLength)
+            coinLength = coinLength >= userDataList.length ? userDataList.length : coinLength
+        } else {
+            coinLength -= 1
+            coinLength = coinLength <= 75 ? 75 : coinLength
+        }
+        lastScrollTop = lastScrollTop = st <= 0 ? 0 : st
+    }
+
+    $:userDataListReactive = [...(Array.from(userDataList).splice(0, coinLength).filter(value => value.email.toLowerCase().search(searchValue.toLowerCase()) >= 0 || value.username.toLowerCase().search(searchValue.toLowerCase()) >= 0))]
     
     requestAnimationFrame(loadDataWhenOnline)
 </script>
 
 <Tabwapper>
-    <main>
+    <main on:scroll={whenScrolled}>
         {#if hasLoadedData && $currentTab == "users"}
             <div class="scroll-space"></div>
             <header>
@@ -123,9 +158,9 @@
 
 <style scoped lang="less">
     main {
-        height: calc(100% - 30px);
+        height: calc(100% - 20px);
         width: 100%;
-        overflow-y: auto;
+        overflow: auto;
         display: flex;
         flex-direction: row;
         justify-content: center;
