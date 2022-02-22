@@ -100,9 +100,9 @@
         });
 
         fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/auth", { 
-        method: "PUT",
-        body: bodyContent,
-        headers: headersList
+            method: "POST",
+            body: bodyContent,
+            headers: headersList
         }).then(function(response) {
             return response.json();
         }).then(function(data) {
