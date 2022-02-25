@@ -1,11 +1,9 @@
 <script lang="ts">
 	import Navbar from "./components/navbar.svelte"
 	import Loginpage from "./components/loginpage.svelte"
-	import { 
-		Settings, 
-		Users 
-	} from "./components/tabs"
-	import { currentTab, isLogin } from "./store"
+	import { Settings, Users } from "./components/tabs"
+	import { addDataOption, currentTab, isLogin } from "./store"
+	import Addpage from "./components/addpage.svelte"
 </script>
 
 <main>
@@ -15,6 +13,9 @@
 			<Settings />
 		{:else if $currentTab == "users"}
 			<Users />
+		{/if}
+		{#if $addDataOption.show && $addDataOption.page != "none"}
+			<Addpage />
 		{/if}
 	{:else}
 		<Loginpage />
