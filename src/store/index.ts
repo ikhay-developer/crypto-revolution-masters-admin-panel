@@ -9,9 +9,7 @@ const isLogin = writable(true)
 const addDataOption = writable({
     show: false,
     page: "none",
-    input: {
-        id: 1
-    },
+    input: null,
     output: null
 })
 
