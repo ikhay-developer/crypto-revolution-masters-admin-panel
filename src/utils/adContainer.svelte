@@ -3,7 +3,7 @@
     import { createEventDispatcher } from "svelte"
 
     export let image:string
-    export let title:string
+    export let message:string
     export let link:string
     export let index:string
 
@@ -11,26 +11,9 @@
 
     let isLoading = true
 
-    let oldImageElement:HTMLImageElement = null
-
     let anchor:HTMLAnchorElement = null
 
     let exitButton:HTMLButtonElement = null
- 
-    let imageElement = new Image()
-    imageElement.src = image
-    imageElement.style.height = "100%"
-    imageElement.style.width = "100%"
-    imageElement.style.borderStyle = "solid"
-    imageElement.style.borderWidth = "0"
-    imageElement.style.borderRadius = "10px"
-    imageElement.onload = () => {
-        isLoading = false
-        if (oldImageElement != null) {
-            oldImageElement.replaceWith(imageElement)    
-        }
-            
-    }
 
     const whenClicked = e =>  {
         e.preventDefault()
@@ -43,7 +26,7 @@
 
     const deleteAd = () => {
         isLoading = true
-        fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/ads/1", { 
+        fetch(`https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/ads/${index}`, { 
             method: "DELETE",
             headers: {
                 "Accept": "*/*",
@@ -70,11 +53,11 @@
     <a 
         bind:this={anchor}
         on:click={whenClicked} 
-        {title} 
+        title={message}
         style:display="{ !isLoading ? "block" : "none" }" class="container"
     >
-        <img bind:this={oldImageElement} src="" alt="">
-        <p {title}>{title}</p>
+        <img on:load={_ => isLoading = false } src={image} alt="">
+        <p title={message}>{message}</p>
         <button on:click={deleteAd} bind:this={exitButton}>
             <img src="./img/x.svg" alt="">
         </button>
@@ -93,6 +76,12 @@
             width: 100%;
             height: 100%;
             text-decoration: none;
+            img {
+                width: 100%;
+                height: 100%;
+                border-width: 0;
+                border-radius: 10px;
+            }
             button {
                 position: relative;
                 z-index: 2;
