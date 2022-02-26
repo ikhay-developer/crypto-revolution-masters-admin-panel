@@ -9,14 +9,14 @@
 <main>
 	{#if $isLogin}
 		<Navbar />
+		<Ads />
+		{#if $addDataOption.show && $addDataOption.page != "none"}
+			<Addpage />
+		{/if}
 		{#if $currentTab == "settings"}
 			<Settings />
 		{:else if $currentTab == "users"}
 			<Users />
-		{/if}
-		<Ads />
-		{#if $addDataOption.show && $addDataOption.page != "none"}
-			<Addpage />
 		{/if}
 	{:else}
 		<Loginpage />
