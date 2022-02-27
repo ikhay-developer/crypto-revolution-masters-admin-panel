@@ -219,7 +219,7 @@
             }
         }
         div.loading-spinner {
-            height: calc(100% - 20px);
+            height: calc(100% - 60px);
             width: 100%;
             display: flex;
             flex-direction: column;
