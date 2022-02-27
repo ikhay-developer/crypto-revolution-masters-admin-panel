@@ -119,7 +119,7 @@
     requestAnimationFrame(loadDataWhenOnline)
 </script>
 
-<Tabwapper>
+<Tabwapper show={$currentTab == "users"}>
     <main on:scroll={whenScrolled}>
         {#if hasLoadedData && $currentTab == "users"}
             <div class="scroll-space"></div>

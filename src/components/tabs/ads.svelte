@@ -103,7 +103,7 @@
     onMount(loadData)
 
 </script>
-<Tabwapper>
+<Tabwapper show={$currentTab == "ads"}>
     <main>
         {#if hasLoadedData && $currentTab == "ads" }
             <div>
@@ -151,11 +151,11 @@
         flex-direction: row;
         justify-content: center;
         flex-wrap: nowrap;
-        align-items: center;
+        align-items: flex-start;
         div {
             display: grid;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 25px;
+            padding-bottom: 25px;
             grid-gap: 10px;
             justify-content: center;
             gap: 10px;

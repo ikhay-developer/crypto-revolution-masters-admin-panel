@@ -130,7 +130,7 @@
 
     onMount(loadData)
 </script>
-<Tabwapper>
+<Tabwapper show={$currentTab == "settings"}>
     <main>
         {#if hasLoadedData && $currentTab == "settings"}
             <div class="body">

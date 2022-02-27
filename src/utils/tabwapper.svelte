@@ -1,6 +1,8 @@
 <script lang="ts">
     import { isNavBarMaximize } from "../store"
-    import { createEventDispatcher, onMount } from "svelte"
+    import { onMount } from "svelte"
+
+    export let show:boolean = false
     
     let main:HTMLElement
 
@@ -65,7 +67,7 @@
     }
 
     </script>
-    <main bind:this={main}>
+    <main style:display={show ? "block" : "none"} bind:this={main}>
         <slot></slot>
     </main>
     
