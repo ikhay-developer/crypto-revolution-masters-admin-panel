@@ -73,25 +73,7 @@
 
     $: { loadData() }
 
-    onMount(()=> {
-        loadData()
-        setInterval(_ => {
-            if (window.navigator.onLine && $currentTab == "users" && hasLoadedData) {
-                fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/users", { 
-                    method: "GET",
-                    headers: {
-                        "Accept": "*/*",
-                        "Content-Type": "application/json"
-                    }
-                }).then(function(response) {
-                    return response.json()
-                }).then(function(data) {
-                    userDataList = data
-                    userDataListReactive = [...(Array.from(userDataList).splice(0, coinLength))]
-                })
-            }
-        }, 150000000)
-    })
+    onMount(loadData)
 
     const loadDataWhenOnline = () => {
         if (!hasLoadedData && window.navigator.onLine && hasResponseError)
