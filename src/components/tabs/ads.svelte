@@ -68,8 +68,7 @@
             if ($addDataOption.output.from == "ad") {
                 let data = $addDataOption.output.data
                 let index = (adsDataList.length + 1).toString()
-                adsDataList = [{image: data.image, link: data.link, message: data.message, index}, ...adsDataList]
-                adsDataList = [...adsDataList]
+                adsDataList = [{...data, index}, ...adsDataList]
                 $addDataOption = {
                     show: false,
                     page: "none",
@@ -121,7 +120,7 @@
                         <img src="./img/plus-lg.svg" alt="plus">
                     </button>
                 {/if}
-                {#each adsDataList as adData}
+                {#each adsDataList as adData, idx (adData.index)}
                     <AdContainer 
                         on:delete={_ => deleteAd(adData.index)}  
                         index={adData.index}
