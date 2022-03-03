@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { currentTab, isNavBarMaximize } from "../store"
+    import { currentTab, isNavBarMaximize, lastTab } from "../store"
 
     let Navbar:HTMLElement
 
@@ -41,7 +41,10 @@
     </button>
     <button 
         title="Message"
-        on:click={_ => $currentTab = "message"}
+        on:click={_ => {
+            $lastTab = $currentTab
+            $currentTab = "message"
+        }}
         style="border-color: {$currentTab == "message" ? "white": "transparent"}"
     >
         <img src="./img/message.svg" alt="msg">
@@ -49,7 +52,10 @@
     </button>
     <button
         title="Favourite"
-        on:click={_ => $currentTab = "favourite"}
+        on:click={_ => {
+            $lastTab = $currentTab
+            $currentTab = "favourite"
+        }}
         style="border-color: {$currentTab == "favourite" ? "white": "transparent"}"
     >
         <img src="./img/favourite-coin.svg" alt="fav">
@@ -57,7 +63,10 @@
     </button>
     <button
         title="Ads"
-        on:click={_ => $currentTab = "ads"}
+        on:click={_ => {
+            $lastTab = $currentTab
+            $currentTab = "ads"
+        }}
         style="border-color: {$currentTab == "ads" ? "white": "transparent"}"
     >
         <img src="./img/ads.svg" alt="ads">
@@ -65,7 +74,10 @@
     </button>
     <button
         title="Users"
-        on:click={_ => $currentTab = "users"}
+        on:click={_ => {
+            $lastTab = $currentTab
+            $currentTab = "users"
+        }}
         style="border-color: {$currentTab == "users" ? "white": "transparent"}"
     >
         <img src="./img/users.svg" alt="urs">
@@ -73,7 +85,10 @@
     </button>
     <button
         title="Settings"
-        on:click={_ => $currentTab = "settings"}
+        on:click={_ => {
+            $lastTab = $currentTab
+            $currentTab = "settings"
+        }}
         style="border-color: {$currentTab == "settings" ? "white": "transparent"}"
     >
         <img src="./img/settings.svg" alt="stgs">
