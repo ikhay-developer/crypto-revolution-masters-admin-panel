@@ -117,7 +117,7 @@
             </header>
             <footer>
                 {#if userDataListReactive.length > 0}
-                    {#each userDataListReactive as  userData}
+                    {#each userDataListReactive as userData, idx (userData.id)}
                         <UserDataContainer email={userData.email} username={userData.username} />
                     {/each}
                 {:else if userDataListReactive.length == 0}
