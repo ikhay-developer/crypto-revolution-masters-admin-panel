@@ -96,7 +96,7 @@
         lastScrollTop = lastScrollTop = st <= 0 ? 0 : st
     }
 
-    $:userDataListReactive = [...(Array.from(userDataList).splice(0, coinLength).filter(value => value.email.toLowerCase().search(searchValue.toLowerCase()) >= 0 || value.username.toLowerCase().search(searchValue.toLowerCase()) >= 0))]
+    $:userDataListReactive = [...(Array.from(userDataList).splice(0, coinLength).filter(value => value.email.toLowerCase().search(searchValue.replaceAll("\\", "").toLowerCase()) >= 0 || value.username.toLowerCase().search(searchValue.replaceAll("\\", "").toLowerCase()) >= 0))]
     
     requestAnimationFrame(loadDataWhenOnline)
 </script>
