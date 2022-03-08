@@ -25,6 +25,12 @@
 	{/if}
 </main>
 
+<svelte:head>
+	{#if $isLogin}
+    	<title>Dashboard</title>        
+	{/if}
+</svelte:head>
+
 <style lang="less" scoped>
 	main {
 		position: fixed;
