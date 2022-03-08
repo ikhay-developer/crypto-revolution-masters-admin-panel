@@ -6,7 +6,7 @@ const lastTab = writable("message")
 
 const isNavBarMaximize = writable(true)
 
-const isLogin = writable(true)
+const isLogin = writable(false)
 
 const addDataOption = writable({
     show: false,
