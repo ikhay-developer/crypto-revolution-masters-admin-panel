@@ -7,7 +7,7 @@
     import MessageContainer from "../../utils/messageContainer.svelte"
 
     interface MessageData {
-        title: string,
+        link: string,
         message: string,
         image: string,
         date: string,
@@ -27,7 +27,7 @@
     let messageList:Array<MessageData> = []
 
     const loadData = () => {
-        if ($currentTab == "message" && !hasLoadedData) {
+        if (!hasLoadedData) {
             isLoading = true
             fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/message", { 
                 method: "GET",
@@ -105,7 +105,7 @@
                     {#each (Array.from(messageList).splice(0, messageLength)) as messageDate, idx (messageDate.id)}
                         <MessageContainer 
                                 date={messageDate.date}
-                                title={messageDate.title}
+                                link={messageDate.link}
                                 image={messageDate.image}
                                 message={messageDate.message}
                             />
