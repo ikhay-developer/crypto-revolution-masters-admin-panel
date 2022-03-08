@@ -22,7 +22,7 @@
     const logIn = () => {
         if (onLine) {
             isLoading = true
-            fetch("http://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/auth", { 
+            fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/auth", { 
                 method: "GET",
                 headers:  {
                     "Accept": "*/*",
@@ -174,7 +174,7 @@
             }
             @media only screen and (max-width: 600px) {
                 & {
-                    width: calc(85% - 5px);
+                    width: calc(80% - 5px);
                 }
             }
         }
