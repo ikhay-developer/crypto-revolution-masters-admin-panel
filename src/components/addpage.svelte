@@ -114,13 +114,12 @@
                 fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/message", { 
                     method: "POST",
                     body: JSON.stringify({
-                        "title": titleORLink,
+                        "link": titleORLink,
                         "message": message,
                         "image": uploadedUrl
                     }),
                     headers: {
                         "Accept": "*/*",
-                        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
                         "Content-Type": "application/json"
                     }
                 }).then(function(response) {
@@ -218,7 +217,7 @@
                         <img style:display={(!isLoading && showUplaodedImage && uploadedUrl != null && !hasError) ? "block" : "none"} bind:this={fullImage} id="full-image" src={(!isLoading && showUplaodedImage && uploadedUrl != null && !hasError) ? uploadedUrl : ""} alt="">
                     </div>
                     <div id="upload-text">
-                        <input type="text" placeholder={$addDataOption.page == "ad" ? "Type link" : "Title"} bind:value={titleORLink}>
+                        <input type="text" placeholder={$addDataOption.page == "ad" ? "Type link" : "Type link"} bind:value={titleORLink}>
                         <textarea placeholder="Type message" bind:value={message}></textarea>
                     </div>
                 </footer>
