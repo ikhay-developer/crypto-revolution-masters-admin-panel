@@ -13,6 +13,8 @@
         index:string
     }
 
+    let indexSet:Set<number> = new Set([1, 2, 3, 4, 5, 6])
+
     let hasResponseError:boolean = false
 
     let hasLoadedData = false
@@ -38,6 +40,7 @@
                     hasResponseError = false
                     isLoading = false
                     adsDataList = data.data
+                    adsDataList.forEach(({index}) => indexSet.delete(parseInt(index)))
                 } else {
                     throw new Error()
                 }
@@ -67,8 +70,7 @@
         if ($addDataOption.output != null) {
             if ($addDataOption.output.from == "ad") {
                 let data = $addDataOption.output.data
-                let index = (adsDataList.length + 1).toString()
-                adsDataList = [{...data, index}, ...adsDataList]
+                adsDataList = [data, ...adsDataList]
                 $addDataOption = {
                     show: false,
                     page: "none",
@@ -86,6 +88,7 @@
     $:{
         if (markforDelete && deleteIndex != null) {
             adsDataList = adsDataList.filter(value => value.index != deleteIndex)
+            indexSet.add(parseInt(deleteIndex))
             adsDataList = [...adsDataList]
             markforDelete = false
             deleteIndex = null
@@ -108,12 +111,12 @@
             <div>
                 {#if adsDataList.length < 6}
                     <button on:click={_ => {
+                        let id = Array.from(indexSet).at(0)
+                        id = id != undefined ? id : 6
                         $addDataOption = {
                             show: true,
                             page: "ad",
-                            input: {
-                                id: String(adsDataList.length + 1)
-                            },
+                            input: { id },
                             output: null
                         }
                     }}>
