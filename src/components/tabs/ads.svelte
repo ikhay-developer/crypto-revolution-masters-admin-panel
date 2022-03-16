@@ -41,6 +41,7 @@
                     isLoading = false
                     adsDataList = data.data
                     adsDataList.forEach(({index}) => indexSet.delete(parseInt(index)))
+                    console.log(indexSet)
                 } else {
                     throw new Error()
                 }
@@ -70,6 +71,7 @@
         if ($addDataOption.output != null) {
             if ($addDataOption.output.from == "ad") {
                 let data = $addDataOption.output.data
+                indexSet.delete(parseInt(data.index))
                 adsDataList = [data, ...adsDataList]
                 $addDataOption = {
                     show: false,
