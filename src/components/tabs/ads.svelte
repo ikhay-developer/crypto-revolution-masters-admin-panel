@@ -41,7 +41,6 @@
                     isLoading = false
                     adsDataList = data.data
                     adsDataList.forEach(({index}) => indexSet.delete(parseInt(index)))
-                    console.log(indexSet)
                 } else {
                     throw new Error()
                 }
