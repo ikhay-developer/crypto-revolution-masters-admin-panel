@@ -6,32 +6,6 @@
     export let link:string
     export let date:string
 
-    let postDate = new Date(date).getTime()
-
-    let currentDate = Date.now()
-    
-    let seconds = Math.floor((currentDate - postDate) / 1000)
-
-    let minutes = Math.floor(seconds / 60)
-
-    let hours = Math.floor(minutes / 60)
-
-    let days = Math.floor(hours / 24)
-
-    let weeks = Math.floor(days / 7)
-
-    let years = new Date(currentDate).getFullYear() - new Date(postDate).getFullYear()
-
-    let months = (years * 12) + (new Date(currentDate).getMonth() - new Date(postDate).getMonth())
-
-    let postAge = years > 0 ? `${years}y` : 
-                months > 0 ? `${months}${months > 1 ? "mths" : "mth"}` :
-                weeks > 0 ? `${weeks}w` :
-                days > 0 ? `${days}${days > 1 ? "days" : "day" }` :
-                hours > 0 ? `${hours}h` : 
-                minutes > 0 ? `${minutes}m` :
-                `${seconds > 0 ? seconds : "1"}s` 
-
     let isLoading = true
 </script>
 
@@ -46,7 +20,7 @@
             {message}
         </p>
         <p id="date">
-            {postAge}
+            {date}
         </p>
     </div>
 </main>
