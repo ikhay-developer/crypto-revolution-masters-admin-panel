@@ -2,6 +2,7 @@
     import Circle from "svelte-loading-spinners/dist/ts/Circle.svelte"
     import { scale } from "svelte/transition"
     import { addDataOption } from "../store"
+    import { Temporal } from "@js-temporal/polyfill"
 
     let showUplaodedImage = false
 
@@ -116,7 +117,8 @@
                     body: JSON.stringify({
                         "link": titleORLink,
                         "message": message,
-                        "image": uploadedUrl
+                        "image": uploadedUrl,
+                        "date": Temporal.Now.plainDateTimeISO().toString()
                     }),
                     headers: {
                         "Accept": "*/*",
