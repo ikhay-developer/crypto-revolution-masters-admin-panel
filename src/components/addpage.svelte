@@ -118,7 +118,7 @@
                         "link": titleORLink,
                         "message": message,
                         "image": uploadedUrl,
-                        "date": Temporal.Now.plainDateTimeISO().toString()
+                        "date": Temporal.Now.zonedDateTimeISO().toString()
                     }),
                     headers: {
                         "Accept": "*/*",
