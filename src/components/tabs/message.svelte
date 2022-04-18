@@ -5,6 +5,8 @@
     import Circle from "svelte-loading-spinners/dist/ts/Circle.svelte"
     import NoConnectionPage from "../../utils/noConnectionPage.svelte"
     import MessageContainer from "../../utils/messageContainer.svelte"
+    import moment from "moment"
+    import { Temporal } from "@js-temporal/polyfill"
 
     interface MessageData {
         link: string,
@@ -42,7 +44,13 @@
                     hasLoadedData = true
                     hasResponseError = false
                     isLoading = false
-                    messageList = Array.from(data.data).map((value:any, index) => ({...value, id: index}))
+                    messageList = Array.from(data.data)
+                        .sort((a:any, b:any) => Temporal.Instant.compare(Temporal.Instant.from(a.date), Temporal.Instant.from(b.date)))
+                        .map((value:any, index) => {
+                            let date = moment(Temporal.Instant.from(value.date).toString()).fromNow()
+                            return {...value, id: index, date}
+                        })
+                        .reverse()
                 } else {
                     throw new Error()
                 }
@@ -58,6 +66,7 @@
         if ($addDataOption.output != null) {
             if ($addDataOption.output.from == "message") {
                 let data = $addDataOption.output.data
+                data.date = moment(Temporal.Instant.from(data.date).toString()).fromNow()
                 messageList = [{...data, id: messageList.length + 1}, ...messageList]
                 $addDataOption = {
                     show: false,
