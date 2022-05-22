@@ -26,7 +26,7 @@
     const loadData = () => {
         if (!hasLoadedData) {
             isLoading = true
-            fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/ads", { 
+            fetch("https://crypto-revolution-masters.onrender.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/ads", { 
                 method: "GET",
                 headers: {
                     "Accept": "*/*",
