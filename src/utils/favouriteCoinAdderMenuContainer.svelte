@@ -15,7 +15,7 @@
                 let coinIndex = favouriteCoins.findIndex((value) => name.toLowerCase() == value.toLowerCase())
                 let newFavouriteCoins = Array.from(favouriteCoins)
                 newFavouriteCoins[coinIndex] = coinToAdd.toLowerCase()
-                fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/favourite-coin", { 
+                fetch("https://crypto-revolution-masters.onrender.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/favourite-coin", { 
                     method: "POST",
                     body: JSON.stringify(newFavouriteCoins),
                     headers: {

@@ -69,7 +69,7 @@
 
     const updateData = () => {
         if ($currentTab == "favourite" && hasLoadedData) {
-            fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/favourite-coin-data", { 
+            fetch("https://crypto-revolution-masters.onrender.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/favourite-coin-data", { 
             method: "GET",
             headers:  {
                 "Accept": "*/*",
@@ -112,7 +112,7 @@
     const loadData = () => {
         if (!hasLoadedData) {
             isLoading = true
-            fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/favourite-coin-data", { 
+            fetch("https://crypto-revolution-masters.onrender.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/favourite-coin-data", { 
             method: "GET",
             headers:  {
                 "Accept": "*/*",

@@ -29,7 +29,7 @@
             let data = new FormData()
             data.append('file', fileInputer.files[0])
             isLoading = true
-            fetch(`https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/upload/${$addDataOption.page == "message" ? "message-images" : "ads-images"}`, {
+            fetch(`https://crypto-revolution-masters.onrender.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/upload/${$addDataOption.page == "message" ? "message-images" : "ads-images"}`, {
                 method: "POST",
                 body: data
             })
@@ -80,7 +80,7 @@
         if (shouldPost) {
             isPosting = true
             if ($addDataOption.page == "ad") {
-                fetch(`https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/ads/${$addDataOption.input.id}`, { 
+                fetch(`https://crypto-revolution-masters.onrender.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/ads/${$addDataOption.input.id}`, { 
                     method: "POST",
                     body: JSON.stringify({
                         "link": titleORLink,
@@ -112,7 +112,7 @@
                     uploadingError = true
                 })
             } else if ($addDataOption.page == "message") {
-                fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/message", { 
+                fetch("https://crypto-revolution-masters.onrender.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/message", { 
                     method: "POST",
                     body: JSON.stringify({
                         "link": titleORLink,

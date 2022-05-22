@@ -47,7 +47,7 @@
                 "Accept": "*/*",
                 "Content-Type": "application/json"
             }
-            fetch("https://crypto-revolution-masters.herokuapp.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/users", { 
+            fetch("https://crypto-revolution-masters.onrender.com/7sEEgy4Gz1O7yFBXvjd7N0NyIGWIRg8D/admin/users", { 
                 method: "GET",
                 headers: headersList
             }).then(function(response) {
